@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chat</title>
+</head>
+<body>
+	<div id="chat-app">
+      <ul>
+        <div v-for="msg in msgHis">
+          <li>{{msg}}</li>
+        </div>
+      </ul>
+      <input type="text" v-model="msg"/>
+      <button @click="send">Send</button>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.2/socket.io.js"></script>
+  <script src="https://unpkg.com/vue@2.3.3"></script>
+  <script>
+  var socket = io();
+	new Vue({
+		el:'#chat-app',
+		data:{
+			msg:'',
+      msgHis:[],
+		},
+    created: function(){
+      socket.on('chat.message',function(message){
+        this.msgHis.push(message)
+      }.bind(this));
+    },
+		methods:{
+			send:function(){
+				socket.emit('chat.message', this.msg);
+        this.msg = '';
+			}
+		}
+	})
+</script>
+</body>
+</html>

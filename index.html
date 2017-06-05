@@ -5,13 +5,14 @@
 </head>
 <body>
 	<div id="chat-app">
-      <ul>
+<!--       <ul>
         <div v-for="msg in msgHis">
           <li>{{msg}}</li>
         </div>
-      </ul>
+      </ul> -->
+      <chatbox :messages="msgHis"></chatbox>
 			<form @submit.prevent="send">
-							<input type="text" v-model="msg" class="form-control input-lg" placeholder="type here"/>
+							<input type="text" v-model="msgtext" class="form-control input-lg" placeholder="type here"/>
 			</form>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.2/socket.io.js"></script>

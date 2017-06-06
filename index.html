@@ -2,19 +2,20 @@
 <html>
 <head>
 	<title>Chat</title>
+  <link rel="stylesheet" href="node_modules/bulma/css/bulma.css">
+  <link rel="stylesheet" href="build/css/main.css">
 </head>
 <body>
-	<div id="chat-app">
-<!--       <ul>
-        <div v-for="msg in msgHis">
-          <li>{{msg}}</li>
-        </div>
-      </ul> -->
-      <chatbox :messages="msgHis"></chatbox>
-			<form @submit.prevent="send">
-							<input type="text" v-model="msgtext" class="form-control input-lg" placeholder="type here"/>
-			</form>
+<div class="columns is-mobile">
+  <div class="column is-half is-offset-one-quarter">
+    <div id="chat-app">
+      <chatbox :messages="msgHis" id="mychatbox"></chatbox>
+      <form @submit.prevent="send">
+        <input type="text" v-model="msgtext" class="form-control input-lg" placeholder="type here"/>
+      </form>
+    </div>
   </div>
+</div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.2/socket.io.js"></script>
   <script src="https://unpkg.com/vue@2.3.3"></script>
   <script src="main.js"></script>

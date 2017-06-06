@@ -4,7 +4,7 @@ Vue.component('message',{
       props: ['message'],
       template:`<li class="message">
                   <div class="sender">
-                    <h3>{{message.sender}}</h3>
+                    <h3>{{message.senderId + " - " + message.sender}}</h3>
                   </div>
                   <div class="messageText">
                     <h3>{{message.text}}</h3>
@@ -15,7 +15,6 @@ Vue.component('message',{
         methods:{
         }
     });
-
 Vue.component('chatbox',{
       props: ['messages'],
       template:`
@@ -35,14 +34,22 @@ new Vue({
   created: function(){
     socket.on('chat.message',function(message){
       this.msgHis.push(message)
-    }.bind(this));
+      setTimeout(function(){
+        let elem = document.getElementById('mychatbox');
+        let boxHeight = elem.scrollHeight + 100;
+        elem.scrollTop = boxHeight;
+        });
+    }.bind(this))
   },
   methods:{
     send:function(){
-      this.msg = {sender:'fan',text:this.msgtext}
-      socket.emit('chat.message', this.msg);
-      this.msgtext = '';
-      this.msg = {};
+      if(this.msgtext.length)
+      {
+        this.msg = {sender:'fan',text:this.msgtext,senderId:socket.id}
+        socket.emit('chat.message', this.msg);
+        this.msgtext = '';
+        this.msg = {};
+      }
     }
   }
 })

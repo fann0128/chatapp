@@ -2,12 +2,12 @@ var socket = io();
 
 Vue.component('message',{
       props: ['message'],
-      template:`<li class="message">
+      template:`<li class="chatMessage">
                   <div class="sender">
                     <h3>{{message.senderId + " - " + message.sender}}</h3>
                   </div>
                   <div class="messageText">
-                    <h3>{{message.text}}</h3>
+                    <span class="tag is-info is-large">{{message.text}}</span>
                   </div>
                 </li>`,
         mounted() {

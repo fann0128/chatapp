@@ -9,3 +9,21 @@
 
 #chat-app form {
   height: 10%; }
+
+#chat-app form input {
+  height: 100%;
+  width: 100%;
+  border-width: 5px;
+  border-color: black;
+  outline: none;
+  padding-left: 10px; }
+
+.chatMessage {
+  margin-left: 10px;
+  margin-top: 10px;
+  font-size: 1.25rem; }
+
+.chatMessage:last-child {
+  margin-bottom: 10px;
+  opacity: 1;
+  transition: opacity 1.2s ease-out; }
